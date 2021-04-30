@@ -7,7 +7,7 @@ import Question from "./Question";
 class Dashboard extends Component {
   render() {
 
-    const { questionIds, sortedAnsweredQuestionsIds, sortedUnansweredQuestionsIds } = this.props;
+    const { sortedAnsweredQuestionsIds, sortedUnansweredQuestionsIds } = this.props;
 
     return (
       <div style={{ padding: "35px 340px" }}>
@@ -44,15 +44,13 @@ function mapStateToProps({ questions, users, authedUser }) {
   );
   const answeredQuestionsIds = user ? Object.keys(user.answers) : null;
   const sortedAnsweredQuestionsIds = answeredQuestionsIds? questionIds.filter(function(val) {
-    return answeredQuestionsIds.indexOf(val) != -1;
-  }) : null;
+    return answeredQuestionsIds.indexOf(val) !== -1;
+  }) : [];
   const sortedUnansweredQuestionsIds = answeredQuestionsIds? questionIds.filter(function(val) {
-    return answeredQuestionsIds.indexOf(val) == -1;
-  }) : null;
+    return answeredQuestionsIds.indexOf(val) === -1;
+  }) : [];
 
   return {
-    questionIds,
-    authedUser,
     sortedAnsweredQuestionsIds,
     sortedUnansweredQuestionsIds
   };
