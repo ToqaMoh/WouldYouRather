@@ -141,20 +141,6 @@ export function getInitialData () {
   }))
 }
 
-export function formatQuestionView (question, author) {
-  const { id, optionOne, optionTwo, timestamp } = question
-  const { name, avatarURL } = author
-
-  return {
-    name,
-    id,
-    timestamp,
-    avatar: avatarURL,
-    optionOne,
-    optionTwo,
-  }
-}
-
 function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {
     id: generateUID(),

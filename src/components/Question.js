@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { connect } from "react-redux"
-import { formatQuestionView } from '../utils/_DATA'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
@@ -15,25 +14,28 @@ class Question extends Component {
 
     render() {
 
-        const { question } = this.props;
+        const { question, user } = this.props;
         debugger 
-        
+
         if (question === null) {
           return <Redirect to="/404" />;
         }
     
         const {
           id,
-          name,
-          avatar,
           optionOne,
         } = question;
+
+        const {
+          name,
+          avatarURL,
+        } = user;
 
         return (
               <Card>
                 <Card.Header as="h5">{name} Asks:</Card.Header>
                 <Card.Body>
-                <img src={avatar} alt={`Avatar of ${name}`} className="avatar" />
+                <img src={avatarURL} alt={`Avatar of ${name}`} className="avatar" />
                   <Card.Title style={{fontWeight: "700"}}>Would You Rather</Card.Title>
                   <Card.Text>
                     ...{optionOne.text}...
@@ -48,11 +50,12 @@ class Question extends Component {
 function mapStateToProps({ questions, users, authedUser }, { id }) {
   debugger
     const question = questions[id];
-
+    const user = users[question.author];
   
     return {
       authedUser,
-      question: question? formatQuestionView(question, users[question.author]): null,
+      question: question? question: null,
+      user: user? user: null,
     }
 }
 

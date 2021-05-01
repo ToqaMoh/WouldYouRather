@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { formatQuestionView } from "../utils/_DATA";
 import { handleAnswerQuestion } from "../actions/questions";
 
 class AnswerQuestion extends Component {
@@ -33,14 +32,15 @@ class AnswerQuestion extends Component {
 
   render() {
       debugger
-    const { id, question } = this.props;
+    const { id, question, user } = this.props;
     const { answer } = this.state;
 
     if (question === null) {
         return <Redirect to={`/questions/:${id}%`} />
     }
 
-    const { name, avatar, optionOne, optionTwo } = question;
+    const { optionOne, optionTwo } = question;
+    const { name, avatarURL } = user;
 
     return (
       <div style={{ padding: "35px 390px" }}>
@@ -48,7 +48,7 @@ class AnswerQuestion extends Component {
           <Card.Header as="h5">{name} Asks:</Card.Header>
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
-              <img src={avatar} alt={`Avatar of ${name}`} className="avatar" />
+              <img src={avatarURL} alt={`Avatar of ${name}`} className="avatar" />
               <Card.Title style={{ fontWeight: "700" }}>
                 Would You Rather
               </Card.Title>
@@ -78,13 +78,13 @@ class AnswerQuestion extends Component {
 function mapStateToProps({ questions, users }, { id }) {
     debugger
   const question = questions[id];
-//   const paramId = props.match.params;
+  const user = users[question.author];
+  //   const paramId = props.match.params;
 
   return {
     id,
-    question: question
-      ? formatQuestionView(question, users[question.author])
-      : null,
+    question: question? question : null,
+    user: user? user : null,
   };
 }
 
