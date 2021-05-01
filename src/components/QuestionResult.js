@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Dropdown from "react-bootstrap/Dropdown";
 import Badge from "react-bootstrap/Badge";
-import { formatQuestionView } from "../utils/_DATA";
 
 class QuestionResult extends Component {
   render() {
