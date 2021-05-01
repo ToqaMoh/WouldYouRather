@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -26,9 +27,13 @@ class Login extends Component {
 
     dispatch(handleSetAutherUser(selectedUser));
 
+    localStorage.setItem("authedUser", selectedUser);
+
     this.setState(() => ({
       selectedUser: "",
     }));
+
+    this.props.history.push(`/home`)
   };
 
   render() {
@@ -44,7 +49,7 @@ class Login extends Component {
           <Card.Header as="h6">Please Sign In to Continue</Card.Header>
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="exampleForm.ControlSelect1">
+              <Form.Group>
                 <Form.Label>Sign In</Form.Label>
                 <Form.Control
                   as="select"
@@ -81,4 +86,4 @@ function mapStateToProps({ users }) {
   };
 }
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));

@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
+import { Redirect, withRouter } from 'react-router-dom'
 import { connect } from "react-redux"
 import { formatQuestionView } from '../utils/_DATA'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 class Question extends Component {
+
+  handleViewPoll = (e, id) => {
+    e.preventDefault();
+    
+    this.props.history.push(`/questions/${id}`)
+  };
+
     render() {
 
         const { question } = this.props;
-
+        debugger 
+        
         if (question === null) {
-          return <p>This Question Doesn't Exist!</p>;
+          return <Redirect to="/404" />;
         }
     
         const {
+          id,
           name,
           avatar,
           optionOne,
         } = question;
 
         return (
-            <div>
               <Card>
                 <Card.Header as="h5">{name} Asks:</Card.Header>
                 <Card.Body>
@@ -29,16 +38,17 @@ class Question extends Component {
                   <Card.Text>
                     ...{optionOne.text}...
                   </Card.Text>
-                  <Button variant="primary">View Poll</Button>
+                  <Button variant="primary" onClick={(e) => this.handleViewPoll(e, id)}>View Poll</Button>
                 </Card.Body>
               </Card>
-            </div>
           );
     }
 }
 
 function mapStateToProps({ questions, users, authedUser }, { id }) {
+  debugger
     const question = questions[id];
+
   
     return {
       authedUser,
@@ -46,4 +56,4 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
     }
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))

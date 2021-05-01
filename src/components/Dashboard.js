@@ -16,7 +16,7 @@ class Dashboard extends Component {
             <ul>
             {sortedUnansweredQuestionsIds.map((id) => (
                 <li key={id}>
-                  <Question id={id} />
+                  <Question id={id}/>
                 </li>
               ))}
             </ul>
@@ -25,7 +25,7 @@ class Dashboard extends Component {
             <ul>
               {sortedAnsweredQuestionsIds.map((id) => (
                 <li key={id}>
-                  <Question id={id} />
+                  <Question id={id}/>
                 </li>
               ))}
             </ul>
@@ -39,10 +39,13 @@ class Dashboard extends Component {
 function mapStateToProps({ questions, users, authedUser }) {
 
   const user = users[authedUser];
+
   const questionIds = Object.keys(questions).sort(
     (a, b) => questions[b].timestamp - questions[a].timestamp
   );
+
   const answeredQuestionsIds = user ? Object.keys(user.answers) : null;
+
   const sortedAnsweredQuestionsIds = answeredQuestionsIds? questionIds.filter(function(val) {
     return answeredQuestionsIds.indexOf(val) !== -1;
   }) : [];

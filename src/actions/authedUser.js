@@ -9,6 +9,6 @@ export function setAutherUser(id) {
 
 export function handleSetAutherUser(userId) {
     return (dispatch) => {
-        return dispatch(setAutherUser(userId))
+        dispatch(setAutherUser(userId))
     };
 }
