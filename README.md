@@ -9,17 +9,17 @@ In this application, the main page displays a login page if a user isn't logged 
 
 When a poll is clicked on the home page, the following is shown:
 
--Text “Would You Rather”
--Avatar of the user who posted the polling question
--Two options
+- Text “Would You Rather”
+- Avatar of the user who posted the polling question
+- Two options
 
 
 For answered polls, each of the two options contains the following:
 
--Text of the option
--Number of people who voted for that option
--Percentage of people who voted for that option
--The option selected by the logged-in user should be clearly marked
+- Text of the option
+- Number of people who voted for that option
+- Percentage of people who voted for that option
+- The option selected by the logged-in user should be clearly marked
 
 The application shows a 404 page if the user is trying to access a poll that does not exist. It also displays a navigation bar so that the user can easily navigate anywhere in the application.
 Upon voting in a poll, all of the information of an answered poll is displayed. The user’s response is recorded and clearly visible on the poll details page. Users can only vote once per poll; they aren't allowed to change their answer after they’ve voted -- no cheating allowed! When the user comes back to the home page, the polling question appears in the “Answered” tab.
@@ -28,10 +28,10 @@ The form for posting new polling questions is available at the `/add` route. The
 
 The application has a leaderboard that’s available at the `/leaderboard` route. Each entry on the leaderboard contains the following:
 
--User’s name
--User’s picture
--Number of questions the user asked
--Number of questions the user answered
+- User’s name
+- User’s picture
+- Number of questions the user asked
+- Number of questions the user answered
 
 Users are ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered. The more questions you ask and answer, the higher up you move.
 
