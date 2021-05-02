@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
-import { handleAddQuestion } from "../actions/questions";
+import { handleAddQuestion } from "../actions/shared";
 
 class NewQuestion extends Component {
   state = {

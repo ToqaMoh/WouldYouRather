@@ -6,7 +6,7 @@ import "../App.css";
 import Login from "./Login";
 import NavComponent from "./NavComponent";
 import Dashboard from "./Dashboard";
-import QuestionPage from "./QuestionPage";
+import QuestionDetails from "./QuestionDetails";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from './LeaderBoard';
 import NotFound404 from './NotFound404';
@@ -37,7 +37,7 @@ class App extends Component {
                       <Route path="/" exact component={Dashboard} />
                       <Route path="/add" component={NewQuestion} />
                       <Route path="/leaderboard" component={LeaderBoard} />
-                      <Route path="/questions/:question_id" component={QuestionPage} />
+                      <Route path="/questions/:question_id" component={QuestionDetails} />
                       <Route path="/404" exact component={NotFound404} />
                     </div>
                   </div>
