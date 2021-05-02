@@ -13,6 +13,7 @@ export default function questions(state = {}, action) {
       };
     case ADD_QUESTION:
       const { question } = action;
+      question.fakeQuestion = true;
       return {
         ...state,
         [question.id]: question,

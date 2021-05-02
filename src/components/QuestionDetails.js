@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -34,8 +34,8 @@ class QuestionDetails extends Component {
   };
 
   render() {
-    debugger;
     const {
+      fakeQuestion,
       name,
       avatarURL,
       answer,
@@ -48,6 +48,10 @@ class QuestionDetails extends Component {
       optionTwoVotesPercent,
     } = this.props;
     const { selectedAnswer } = this.state;
+
+    if (fakeQuestion === true) {
+      return <Redirect to="/404" />;
+    }
 
     return (
       <div style={{ padding: "35px 390px" }}>
@@ -135,11 +139,13 @@ class QuestionDetails extends Component {
 }
 
 function mapStateToProps({ questions, users, authedUser }, props) {
-  debugger;
   const { question_id } = props.match.params;
   const question = questions[question_id];
+  const fakeQuestion =
+    question && question.fakeQuestion ? question.fakeQuestion : false;
   const user = question ? users[question.author] : null;
-  const answers = Object.keys(users).length === 0 ? null : users[authedUser].answers;
+  const answers =
+    Object.keys(users).length === 0 ? null : users[authedUser].answers;
 
   var answer = null;
   if (answers) {
@@ -156,6 +162,7 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 
   return {
     id: question_id,
+    fakeQuestion,
     name: user ? user.name : null,
     avatarURL: user ? user.avatarURL : null,
     answer,

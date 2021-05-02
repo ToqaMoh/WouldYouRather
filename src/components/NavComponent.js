@@ -1,22 +1,21 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { handleSetAutherUser } from "../actions/authedUser";
 
 class NavComponent extends Component {
-
   handleLogout = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
 
     dispatch(handleSetAutherUser(""));
     localStorage.clear();
-    this.props.history.push(`/`)
+    this.props.history.push(`/`);
   };
 
   render() {
@@ -28,17 +27,17 @@ class NavComponent extends Component {
           <Col>
             <Nav variant="pills" activeKey={window.location.pathname}>
               <Nav.Item>
-                <Nav.Link href="/">
+                <Nav.Link onClick={() => this.props.history.replace({ pathname: `/`})}>
                   Home
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/add">
+                <Nav.Link onClick={() => this.props.history.replace({ pathname: `/add`})}>
                   New Question
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/leaderboard">
+                <Nav.Link onClick={() => this.props.history.replace({ pathname: `/leaderboard`})}>
                   Leader Board
                 </Nav.Link>
               </Nav.Item>
@@ -56,7 +55,12 @@ class NavComponent extends Component {
                   />
                 </Col>
                 <Col>
-                  <Button variant="danger" onClick={(e) => this.handleLogout(e)}>Logout</Button>
+                  <Button
+                    variant="danger"
+                    onClick={(e) => this.handleLogout(e)}
+                  >
+                    Logout
+                  </Button>
                 </Col>
               </Row>
             </Col>
@@ -70,7 +74,7 @@ class NavComponent extends Component {
 function mapStateToProps({ authedUser }, { user }) {
   return {
     authedUser,
-    user: user? user: null
+    user: user ? user : null,
   };
 }
 
