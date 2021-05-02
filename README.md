@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+Would You Rather Project
+---------------------------------------------------------
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+In the "Would You Rather?" Project, the game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
 
-## Available Scripts
+## Overview
+In this application, the main page displays a login page if a user isn't logged in. Once the user logs in, two lists of "questions" (i.e. answered and unanswered polls) are displayed at `/` (the root URL), each of which contains polls of questions that are arranged from the most recently created (top) to the least recently created (bottom). The user should be able to toggle between answered and unanswered polls. Each polling question should link to the details of that poll. The details of each poll should be available at `/questions/:question_id`. 
 
-In the project directory, you can run:
+When a poll is clicked on the home page, the following is shown:
 
-### `npm start`
+-Text “Would You Rather”
+-Avatar of the user who posted the polling question
+-Two options
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+For answered polls, each of the two options contains the following:
 
-### `npm test`
+-Text of the option
+-Number of people who voted for that option
+-Percentage of people who voted for that option
+-The option selected by the logged-in user should be clearly marked
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application shows a 404 page if the user is trying to access a poll that does not exist. It also displays a navigation bar so that the user can easily navigate anywhere in the application.
+Upon voting in a poll, all of the information of an answered poll is displayed. The user’s response is recorded and clearly visible on the poll details page. Users can only vote once per poll; they aren't allowed to change their answer after they’ve voted -- no cheating allowed! When the user comes back to the home page, the polling question appears in the “Answered” tab.
 
-### `npm run build`
+The form for posting new polling questions is available at the `/add` route. The application shows the text “Would You Rather” and have a form for creating two options. Upon submitting the form, a new poll should be created, the user is taken to the home page, and the new polling question should appear in the correct category on the home page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application has a leaderboard that’s available at the `/leaderboard` route. Each entry on the leaderboard contains the following:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-User’s name
+-User’s picture
+-Number of questions the user asked
+-Number of questions the user answered
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Users are ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered. The more questions you ask and answer, the higher up you move.
 
-### `npm run eject`
+The user is able to navigate to the leaderboard, to a specific question, and to the form that allows the user to create a new poll both from within the app and by typing in the address into the address bar. the application should requires the user to be signed in order to access those pages.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Build Tools
+* HTML
+* CSS
+* React
+* React Redux
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installing All Required Packages
+- `npm install`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## To Run Project
+- cd into the root folder and run
+- `npm start`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Open browser at http://localhost:3000/

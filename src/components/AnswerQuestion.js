@@ -47,27 +47,30 @@ class AnswerQuestion extends Component {
         <Card>
           <Card.Header as="h5">{name} Asks:</Card.Header>
           <Card.Body>
-            <Form onSubmit={this.handleSubmit}>
               <img src={avatarURL} alt={`Avatar of ${name}`} className="avatar" />
               <Card.Title style={{ fontWeight: "700" }}>
                 Would You Rather
               </Card.Title>
-                <Form.Check
+              <Form onSubmit={this.handleSubmit}>
+              <Form.Check
                   type="radio"
+                  name="radioGp"
                   id="optionOne"
                   label={optionOne.text}
                   onChange={this.handleChange}
                 />
                 <Form.Check
                   type="radio"
+                  name="radioGp"
                   id="optionTwo"
                   label={optionTwo.text}
                   onChange={this.handleChange}
                 />
-              <Button variant="primary" type="submit" disabled={answer === ""}>
+                <Button variant="primary" type="submit" disabled={answer === ""}>
                 Submit
               </Button>
             </Form>
+              
           </Card.Body>
         </Card>
       </div>
@@ -79,7 +82,6 @@ function mapStateToProps({ questions, users }, { id }) {
     debugger
   const question = questions[id];
   const user = users[question.author];
-  //   const paramId = props.match.params;
 
   return {
     id,

@@ -34,10 +34,10 @@ class App extends Component {
                 {this.props.loading === true ? null : (
                   <div>
                     <div>
-                      <Route path="/home" component={Dashboard} />
+                      <Route path="/" exact component={Dashboard} />
                       <Route path="/add" component={NewQuestion} />
                       <Route path="/leaderboard" component={LeaderBoard} />
-                      <Route path="/questions/:id" component={QuestionPage} />
+                      <Route path="/questions/:question_id" component={QuestionPage} />
                       <Route path="/404" exact component={NotFound404} />
                     </div>
                   </div>

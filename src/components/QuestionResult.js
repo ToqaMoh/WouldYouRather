@@ -8,8 +8,10 @@ import Badge from "react-bootstrap/Badge";
 class QuestionResult extends Component {
   render() {
     const {
-      question,
-      user,
+      optionOne, 
+      optionTwo,
+      name, 
+      avatarURL,
       optionOneVotes,
       optionTwoVotes,
       noOfVotes,
@@ -17,8 +19,6 @@ class QuestionResult extends Component {
       optionTwoVotesPercent,
       UserAnswer
     } = this.props;
-    const { optionOne, optionTwo } = question;
-    const { name, avatarURL } = user;
 
     return (
       <div style={{ padding: "35px 390px" }}>
@@ -36,7 +36,7 @@ class QuestionResult extends Component {
                 </div>
               )}
               <Card.Body>
-                <Card.Text>{optionOne.text}</Card.Text>
+                <Card.Text>{optionOne}</Card.Text>
                 <ProgressBar
                   animated
                   now={optionOneVotesPercent}
@@ -57,7 +57,7 @@ class QuestionResult extends Component {
                 </div>
               )}
               <Card.Body>
-                <Card.Text>{optionTwo.text}</Card.Text>
+                <Card.Text>{optionTwo}</Card.Text>
                 <ProgressBar
                   animated
                   now={optionTwoVotesPercent}
@@ -76,20 +76,22 @@ class QuestionResult extends Component {
 }
 
 function mapStateToProps({ questions, users, authedUser }, { id }) {
-  const question = questions[id];
-  const userData = users[question.author];
-  const user = users[authedUser];
-  const UserAnswer = user.answers[id];
-  const optionOneVotes = question.optionOne.votes.length;
-  const optionTwoVotes = question.optionTwo.votes.length;
+  const question = Object.keys(questions).length === 0 ? null : questions[id];
+  const userData = Object.keys(users).length === 0 || question === null? null : users[question.author];
+  const user = Object.keys(users).length === 0? null : users[authedUser];
+  const UserAnswer =  user? user.answers[id] : null;
+  const optionOneVotes = question? question.optionOne.votes.length : null;
+  const optionTwoVotes = question? question.optionTwo.votes.length : null;
   const noOfVotes = optionOneVotes + optionTwoVotes;
   const optionOneVotesPercent = parseFloat((optionOneVotes / noOfVotes) * 100);
   const optionTwoVotesPercent = parseFloat((optionTwoVotes / noOfVotes) * 100);
 
   return {
-    id,
     question,
-    user: userData,
+    optionOne: question? question.optionOne.text : null, 
+    optionTwo: question? question.optionTwo.text : null,
+    name: userData? userData.name : null, 
+    avatarURL: userData? userData.avatarURL : null,
     optionOneVotes,
     optionTwoVotes,
     noOfVotes,

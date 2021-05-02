@@ -33,7 +33,7 @@ class Login extends Component {
       selectedUser: "",
     }));
 
-    this.props.history.push(`/home`)
+    this.props.history.push(`/`)
   };
 
   render() {

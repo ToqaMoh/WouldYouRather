@@ -28,7 +28,7 @@ class NavComponent extends Component {
           <Col>
             <Nav variant="pills" activeKey={window.location.pathname}>
               <Nav.Item>
-                <Nav.Link href="/home">
+                <Nav.Link href="/">
                   Home
                 </Nav.Link>
               </Nav.Item>
