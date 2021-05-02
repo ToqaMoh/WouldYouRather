@@ -4,10 +4,7 @@ import { receiveQuestions, addQuestion, answerQuestion } from "./questions";
 import { setAutherUser } from "./authedUser";
 import { showLoading, hideLoading } from 'react-redux-loading';
 
-var AUTHED_ID = localStorage.getItem("authedUser");
-if(AUTHED_ID === null) {
-  AUTHED_ID = '';
-}
+const AUTHED_ID = '';
 
 export function handleInitialData() {
   return (dispatch) => {

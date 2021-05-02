@@ -14,7 +14,6 @@ class NavComponent extends Component {
     const { dispatch } = this.props;
 
     dispatch(handleSetAutherUser(""));
-    localStorage.clear();
     this.props.history.push(`/`);
   };
 

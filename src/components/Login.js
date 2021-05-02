@@ -27,13 +27,11 @@ class Login extends Component {
 
     dispatch(handleSetAutherUser(selectedUser));
 
-    localStorage.setItem("authedUser", selectedUser);
-
     this.setState(() => ({
       selectedUser: "",
     }));
 
-    this.props.history.push(`/`)
+    this.props.history.push(window.location.pathname);
   };
 
   render() {

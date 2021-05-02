@@ -35,7 +35,7 @@ class QuestionDetails extends Component {
 
   render() {
     const {
-      fakeQuestion,
+      existingQuestion,
       name,
       avatarURL,
       answer,
@@ -49,7 +49,7 @@ class QuestionDetails extends Component {
     } = this.props;
     const { selectedAnswer } = this.state;
 
-    if (fakeQuestion === true) {
+    if (existingQuestion === false) {
       return <Redirect to="/404" />;
     }
 
@@ -141,8 +141,13 @@ class QuestionDetails extends Component {
 function mapStateToProps({ questions, users, authedUser }, props) {
   const { question_id } = props.match.params;
   const question = questions[question_id];
-  const fakeQuestion =
-    question && question.fakeQuestion ? question.fakeQuestion : false;
+  var existingQuestion;
+  if(question === undefined) {
+    existingQuestion = false;
+  }
+  else {
+    existingQuestion = question && !question.existingQuestion ? question.existingQuestion : true;
+  }
   const user = question ? users[question.author] : null;
   const answers =
     Object.keys(users).length === 0 ? null : users[authedUser].answers;
@@ -162,7 +167,7 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 
   return {
     id: question_id,
-    fakeQuestion,
+    existingQuestion,
     name: user ? user.name : null,
     avatarURL: user ? user.avatarURL : null,
     answer,
